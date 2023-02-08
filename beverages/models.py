@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class soft_drinks(models.Model):
+class soft_drink(models.Model):
     name=models.CharField(max_length=200)
     description=models.TextField(max_length=500)
 
