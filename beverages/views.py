@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django.http import JsonResponse
-from serializers import SoftDrinkSerializer
+from .serializers import *
 
 # Get all drinks
 #Serialize them
@@ -11,5 +11,9 @@ def softDrinks(request):
     serialized_data=SoftDrinkSerializer(drinks, many=True)
     return JsonResponse(serialized_data.data, safe=False)
 
+def AlcoholDrink(request):
+    my_alcohol = alcohol.objects.all()
+    serialized_alcohol=AlcoholSerializer(my_alcohol, many=True)
+    return JsonResponse(serialized_alcohol.data, safe=False)
 
 
