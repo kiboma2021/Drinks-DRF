@@ -18,7 +18,7 @@ from django.urls import path
 from beverages import views
 
 urlpatterns = [
-    path('', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('softdrinks/', views.softDrinks),
     path('alcohols/', views.AlcoholDrink),
     path('allsodas/', views.sodaDrink),

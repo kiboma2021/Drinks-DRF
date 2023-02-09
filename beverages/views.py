@@ -9,17 +9,19 @@ from rest_framework import status
 #Serialize them
 #Retun json
 
-@api_view('GET','POST')
+@api_view(['GET','POST'])
 def softDrinks(request):
     if request.method == 'GET':
         drinks = soft_drink.objects.all()
         serialized_data=SoftDrinkSerializer(drinks, many=True)
         return JsonResponse({'drinks':serialized_data.data})
     if request.method == 'POST':
-        serialize_data=SoftDrinkSerializer(data=request.data)
-        if serialize_data.is_valid():
-            serialize_data.save()
-            return Response(serialize_data.data, status=status.HTTP_201_CREATED)
+        serialized_data=SoftDrinkSerializer(data=request.data)
+        print("===",serialized_data,"========")
+        if serialized_data.is_valid():
+            print("================================")
+            serialized_data.save()
+            return Response(serialized_data.data, status=status.HTTP_201_CREATED)
 
 def AlcoholDrink(request):
     my_alcohol = alcohol.objects.all()
