@@ -16,4 +16,9 @@ def AlcoholDrink(request):
     serialized_alcohol=AlcoholSerializer(my_alcohol, many=True)
     return JsonResponse({'alcohols':serialized_alcohol.data})
 
+def sodaDrink(request):
+    sodas=soda.objects.all()
+    serialized_sodas=SodaSerializer(sodas, many=True)
+    return JsonResponse({'sodas':serialized_sodas.data})
+
 

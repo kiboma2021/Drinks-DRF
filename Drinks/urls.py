@@ -20,5 +20,6 @@ from beverages import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('softdrinks/', views.softDrinks),
-    path('alcohols/', views.AlcoholDrink)
+    path('alcohols/', views.AlcoholDrink),
+    path('allsodas/', views.sodaDrink),
 ]
