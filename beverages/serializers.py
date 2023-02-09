@@ -10,3 +10,8 @@ class AlcoholSerializer(serializers.ModelSerializer):
     class Meta:
         model = alcohol
         fields = ['id','name','description']
+
+class SodaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = soda
+        fields = ['id','name','description']

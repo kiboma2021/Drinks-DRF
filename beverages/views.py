@@ -9,11 +9,11 @@ from .serializers import *
 def softDrinks(request):
     drinks = soft_drink.objects.all()
     serialized_data=SoftDrinkSerializer(drinks, many=True)
-    return JsonResponse(serialized_data.data, safe=False)
+    return JsonResponse({'drinks':serialized_data.data})
 
 def AlcoholDrink(request):
     my_alcohol = alcohol.objects.all()
     serialized_alcohol=AlcoholSerializer(my_alcohol, many=True)
-    return JsonResponse(serialized_alcohol.data, safe=False)
+    return JsonResponse({'alcohols':serialized_alcohol.data})
 
 
