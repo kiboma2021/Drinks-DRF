@@ -64,7 +64,11 @@ def AlcoholDrink_Detail(request,id):
         serializer=AlcoholSerializer(get_alcohol)
         return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method =='PUT':
-        pass
+        serializer=AlcoholSerializer(get_alcohol,data=request.GET)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method =='DELETE':
         pass
 
