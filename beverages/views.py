@@ -21,6 +21,23 @@ def softDrinks(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@api_view(['GET', 'PUT', 'DELETE'])
+def softDrinks_Detail(request,id):
+    try:
+        drinks=soft_drink.objects.get(pk=id)
+    except soft_drink.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer=SoftDrinkSerializer(drinks)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        pass
+    elif request.method == 'DELETE':
+        pass
+
+
+
 @api_view(['GET', 'POST'])
 def AlcoholDrink(request):
     if request.method == 'GET':
