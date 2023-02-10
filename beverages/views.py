@@ -54,6 +54,14 @@ def AlcoholDrink(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+
+
+
+
+
+
+            
+
 @api_view(['GET', 'POST'])
 def sodaDrink(request):
     if request.method == 'GET':
