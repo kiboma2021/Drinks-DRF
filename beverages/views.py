@@ -21,6 +21,7 @@ def softDrinks(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@api_view(['GET', 'POST'])
 def AlcoholDrink(request):
     if request.method == 'GET':
         my_alcohol = alcohol.objects.all()
@@ -32,9 +33,16 @@ def AlcoholDrink(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@api_view(['GET', 'POST'])
 def sodaDrink(request):
-    sodas=soda.objects.all()
-    serialized_sodas=SodaSerializer(sodas, many=True)
-    return JsonResponse({'sodas':serialized_sodas.data})
+    if request.method == 'GET':
+        sodas=soda.objects.all()
+        serialized_sodas=SodaSerializer(sodas, many=True)
+        return JsonResponse({'sodas':serialized_sodas.data})
+    elif request.method == 'POST':
+        serializer=SodaSerializer(data=request.GET)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
