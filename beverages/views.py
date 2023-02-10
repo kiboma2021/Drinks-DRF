@@ -75,12 +75,14 @@ def AlcoholDrink_Detail(request,id):
 
 @api_view(['GET', 'POST'])
 def sodaDrink(request):
-
-    
-    if request.method == 'GET':
+    try:
         sodas=soda.objects.all()
+    except soda.DoesNotExist:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    if request.method == 'GET':
         serialized_sodas=SodaSerializer(sodas, many=True)
-        return JsonResponse({'sodas':serialized_sodas.data})
+        return Response(serialized_sodas.data)
     elif request.method == 'POST':
         serializer=SodaSerializer(data=request.GET)
         if serializer.is_valid():
