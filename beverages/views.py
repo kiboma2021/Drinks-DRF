@@ -41,7 +41,8 @@ def softDrinks_Detail(request,id):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        pass
+        drink.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -76,7 +77,8 @@ def AlcoholDrink_Detail(request,id):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method =='DELETE':
-        pass
+        get_alcohol.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
           
 
 @api_view(['GET', 'POST'])
@@ -113,4 +115,5 @@ def sodaDrink_Detail(request,id):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        pass
+        get_soda.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
