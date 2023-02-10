@@ -71,12 +71,7 @@ def AlcoholDrink_Detail(request,id):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method =='DELETE':
         pass
-
-
-
-
-
-            
+          
 
 @api_view(['GET', 'POST'])
 def sodaDrink(request):
@@ -91,3 +86,21 @@ def sodaDrink(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET','PUT','DELETE'])
+def sodaDrink_Detail(request,id):
+    try:
+        get_soda = soda.objects.get(pk=id)
+    except soda.DoesNotExist:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    if request.method == 'GET':
+        serializer=SodaSerializer(get_soda)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method == 'PUT':
+        serializer=SodaSerializer(get_soda,data=request.GET)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        pass
