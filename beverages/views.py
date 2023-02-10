@@ -27,10 +27,10 @@ def AlcoholDrink(request):
         serialized_alcohol=AlcoholSerializer(my_alcohol, many=True)
         return JsonResponse({'alcohols':serialized_alcohol.data})
     elif request.method == 'POST':
-        my_alcohol =AlcoholSerializer(data=request.GET)
-        if my_alcohol.is_valid():
-            my_alcohol.save()
-            return Response(my_alcohol.data, status=status.HTTP_201_CREATED)
+        serializer =AlcoholSerializer(data=request.GET)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 def sodaDrink(request):
     sodas=soda.objects.all()
