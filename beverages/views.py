@@ -11,10 +11,13 @@ from rest_framework import status
 
 @api_view(['GET','POST'])
 def softDrinks(request):
-    if request.method == 'GET':
+    try:
         drinks = soft_drink.objects.all()
+    except soft_drink.DoesNotExist:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'GET':
         serializer=SoftDrinkSerializer(drinks, many=True)
-        return JsonResponse({'drinks':serializer.data})
+        return Response(serializer.data)
     elif request.method == 'POST':
         serializer=SoftDrinkSerializer(data=request.GET)
         if serializer.is_valid():
@@ -44,10 +47,13 @@ def softDrinks_Detail(request,id):
 
 @api_view(['GET', 'POST'])
 def AlcoholDrink(request):
-    if request.method == 'GET':
+    try:
         my_alcohol = alcohol.objects.all()
+    except alcohol.DoesNotExist:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'GET':
         serialized_alcohol=AlcoholSerializer(my_alcohol, many=True)
-        return JsonResponse({'alcohols':serialized_alcohol.data})
+        return Response(serialized_alcohol.data)
     elif request.method == 'POST':
         serializer =AlcoholSerializer(data=request.GET)
         if serializer.is_valid():
