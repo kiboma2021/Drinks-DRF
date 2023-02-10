@@ -54,7 +54,19 @@ def AlcoholDrink(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
+@api_view(['GET','PUT','DELETE'])
+def AlcoholDrink_Detail(request,id):
+    try:
+        get_alcohol=alcohol.objects.get(pk=id)
+    except alcohol.DoesNotExist:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    if request.method =='GET':
+        serializer=AlcoholSerializer(get_alcohol)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method =='PUT':
+        pass
+    elif request.method =='DELETE':
+        pass
 
 
 

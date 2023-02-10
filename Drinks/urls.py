@@ -22,5 +22,6 @@ urlpatterns = [
     path('softdrinks/', views.softDrinks),
     path('softdrinks/<int:id>/', views.softDrinks_Detail),
     path('alcohols/', views.AlcoholDrink),
+    path('alcohols/<int:id>/', views.AlcoholDrink_Detail),
     path('allsodas/', views.sodaDrink),
 ]
