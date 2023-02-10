@@ -75,6 +75,8 @@ def AlcoholDrink_Detail(request,id):
 
 @api_view(['GET', 'POST'])
 def sodaDrink(request):
+
+    
     if request.method == 'GET':
         sodas=soda.objects.all()
         serialized_sodas=SodaSerializer(sodas, many=True)
