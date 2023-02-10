@@ -13,15 +13,15 @@ from rest_framework import status
 def softDrinks(request):
     if request.method == 'GET':
         drinks = soft_drink.objects.all()
-        serialized_data=SoftDrinkSerializer(drinks, many=True)
-        return JsonResponse({'drinks':serialized_data.data})
+        serializer=SoftDrinkSerializer(drinks, many=True)
+        return JsonResponse({'drinks':serializer.data})
     if request.method == 'POST':
-        serialized_data=SoftDrinkSerializer(data=request.data)
-        print("===",serialized_data,"========")
-        if serialized_data.is_valid():
+        serializer=SoftDrinkSerializer(data=request.GET)
+        print("===",serializer,"========")
+        if serializer.is_valid():
             print("================================")
-            serialized_data.save()
-            return Response(serialized_data.data, status=status.HTTP_201_CREATED)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 def AlcoholDrink(request):
     my_alcohol = alcohol.objects.all()
